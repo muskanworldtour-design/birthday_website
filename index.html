@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Happy Birthday Ali ❤️ — From Muskan</title>
+
+<!-- ================= Styles ================= -->
+<style>
+  :root{
+    --peach-1:#fff6f4;
+    --peach-2:#ffeceb;
+    --accent:#ff6b81;
+    --text:#3b1f28;
+    --card: rgba(255,255,255,0.95);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: linear-gradient(180deg,var(--peach-1),var(--peach-2));
+    color:var(--text);
+    min-height:100vh;
+    overflow-x:hidden;
+    position: relative;
+  }
+
+  /* NAV */
+  nav{
+    display:flex; align-items:center; gap:12px;
+    padding:12px 16px; position:sticky; top:0; z-index:120;
+    background: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(255,255,255,0.78));
+    backdrop-filter: blur(6px);
+  }
+  .brand{ font-weight:800; color:var(--accent); margin-right:8px }
+  .navlinks{ display:flex; gap:8px }
+  .navlinks button{
+    background:transparent; border:0; padding:8px 12px; border-radius:10px; cursor:pointer; font-weight:700;
+  }
+  .navlinks button.active{
+    background:linear-gradient(90deg,var(--accent),#ff8aa2); color:white;
+    box-shadow:0 8px 24px rgba(255,107,129,0.12);
+  }
+
+  /* HERO */
+  header.hero{
+    text-align:center; padding:72px 18px 40px; position:relative;
+  }
+  .hero-inner{
+    max-width:960px; margin:auto; background:var(--card); border-radius:18px; padding:26px;
+    box-shadow:0 18px 60px rgba(200,100,140,0.06);
+  }
+  h1.hero-title{ margin:2px 0 6px; font-size:36px; color:#8b1633 }
+  .typed-line{ color:#7a2a3a; font-style:italic; min-height:28px; margin-bottom:14px }
+  p.hero-sub{ margin:0 0 14px; color:#7a2a3a }
+
+  /* music */
+  .music-controls{ display:flex; gap:10px; align-items:center; justify-content:center; flex-wrap:wrap }
+  .music-btn{ background:#ff6384; color:white; border:0; padding:10px 18px; border-radius:28px; cursor:pointer; font-weight:700 }
+  .music-btn.stop{ background:transparent; color:#8b1633; border:1px solid rgba(140,20,50,0.06) }
+
+  /* layout */
+  main{ max-width:980px; margin:22px auto; padding:12px; z-index:1; position:relative; }
+  .card{ background:var(--card); border-radius:12px; padding:16px; margin-bottom:16px; box-shadow:0 12px 36px rgba(200,100,140,0.05) }
+
+  /* hearts */
+  .hearts-layer{ position:fixed; left:0; top:0; width:100%; height:100%; pointer-events:none; overflow:hidden; z-index:5 }
+  .heart{ position:absolute; font-size:22px; animation: rise 7s linear infinite; opacity:0.95; transform-origin:center; }
+  @keyframes rise {
+    0%{ transform: translateY(110vh) scale(0.6); opacity:0 }
+    6%{ opacity:1 }
+    90%{ opacity:0.9 }
+    100%{ transform: translateY(-20vh) scale(1.4); opacity:0 }
+  }
+
+  /* modal surprise */
+  .modal-root{ position:fixed; left:0; top:0; width:100%; height:100%; display:flex; align-items:center; justify-content:center; z-index:200 }
+  .modal-back{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.6)); backdrop-filter: blur(2px) }
+  .modal-card{ position:relative; z-index:201; max-width:820px; width:94%; background:white; color:var(--text); border-radius:18px; padding:26px; text-align:center; box-shadow:0 20px 80px rgba(0,0,0,0.35) }
+  .modal-card h2{ color:#b30059; margin:0 0 8px }
+
+  /* gallery */
+  .gallery{ display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; }
+  @media (max-width:760px){ .gallery{ grid-template-columns:repeat(2,1fr);} .navlinks{ display:none } }
+  .gallery img{ width:100%; border-radius:10px; display:block }
+
+  .quiz-card{ display:flex; flex-direction:column; gap:8px }
+  .choice{ padding:10px; border-radius:10px; background:rgba(255,255,255,0.98); cursor:pointer; border:1px solid rgba(0,0,0,0.03) }
+  .choice.correct{ outline:3px solid #7dd48b }
+  .choice.wrong{ outline:3px solid #f3a3a3 }
+
+  video{ width:100%; border-radius:12px; display:block; margin:10px 0 }
+
+  .comments{ background:rgba(255,255,255,0.98); padding:10px; border-radius:10px; max-height:220px; overflow:auto }
+  .comment{ padding:8px; border-bottom:1px dashed rgba(0,0,0,0.04); font-size:14px }
+
+  .cake-big {
+    font-size: 120px;
+    transform-origin: center;
+    animation: cakePop 900ms ease both;
+    filter: drop-shadow(0 20px 40px rgba(255,90,120,0.18));
+  }
+  @keyframes cakePop {
+    0% { transform: scale(0.0) rotate(-8deg); opacity:0 }
+    60% { transform: scale(1.12) rotate(4deg); opacity:1 }
+    100% { transform: scale(1) rotate(0deg); opacity:1 }
+  }
+
+  /* opening overlay */
+  .overlay {
+    position:fixed; inset:0; background:linear-gradient(180deg, rgba(255,240,245,0.95), rgba(255,246,240,0.95));
+    display:flex; align-items:center; justify-content:center; flex-direction:column;
+    z-index:999; text-align:center; padding:20px;
+  }
+  .open-btn {
+    background: linear-gradient(90deg,var(--accent),#ff8aa2);
+    border:0; color:white; padding:14px 22px; border-radius:30px; font-weight:800; cursor:pointer;
+    box-shadow: 0 12px 30px rgba(255, 100, 140, 0.18);
+    margin-top:18px;
+    font-size:18px;
+  }
+  .skip-link { margin-top:10px; color:#8b1633; cursor:pointer; font-weight:700; text-decoration:underline; background:none; border:none; }
+
+  /* confetti pieces for overlay */
+  .confetti-piece {
+    position:fixed; top:-10px; font-size:28px; pointer-events:none; z-index:1000;
+    transition: transform 2s linear, opacity 2s linear;
+  }
+
+  footer{ text-align:center; padding:16px 6px; color:#7a2a3a; opacity:0.9; font-size:14px }
+
+  /* SPOTIFY */
+  .spotify-card img{ max-width:100%; border-radius:12px; margin-bottom:12px }
+  .spotify-pass{ display:flex; gap:8px; justify-content:center; margin-top:12px; flex-wrap:wrap }
+  .spotify-pass input{ padding:10px 12px; border-radius:8px; border:1px solid rgba(0,0,0,0.2); }
+</style>
+</head>
+
+<body>
+
+<!-- OPENING OVERLAY -->
+<div id="openingOverlay" class="overlay" aria-hidden="false">
+  <div id="overlayContent" style="max-width:880px; width:100%;">
+    <div style="font-size:18px; color:#b83a54; font-weight:800; margin-bottom:8px">Happy Birthday, Ali!</div>
+    <div class="cake-big" role="img" aria-label="Birthday cake">🎂</div>
+    <div style="margin-top:12px; color:#7a2a3a; font-size:16px">Something little for my Big Babe — made with all my love ❤️</div>
+
+    <div style="display:flex; gap:12px; justify-content:center; margin-top:18px;">
+      <button id="openSiteBtn" class="open-btn">Open Site</button>
+      <button id="skipOverlay" class="skip-link">Skip animation</button>
+    </div>
+  </div>
+</div>
+
+<div class="hearts-layer" id="heartsLayer"></div>
+
+<!-- Navigation -->
+<nav>
+  <div class="brand">Muskan ♥ Ali</div>
+  <div class="navlinks" id="navlinks">
+    <button data-page="home" class="active">Home</button>
+    <button data-page="quiz">Quiz</button>
+    <button data-page="diary">Diary</button>
+    <button data-page="crossword">Crossword</button>
+    <button data-page="letter">Letter</button>
+    <button data-page="videos">Videos</button>
+    <button data-page="spotify">Spotify</button>
+  </div>
+</nav>
+
+<main id="app" aria-hidden="false">
+
+<!-- HOME -->
+<section id="home" class="page">
+  <header class="hero">
+    <div class="hero-inner card">
+      <h1 class="hero-title">Happy Birthday, Ali babe ❤️</h1>
+      <div class="typed-line" id="typedLine"></div>
+      <p class="hero-sub">A little website full of memories and surprises — from Muskan with love.</p>
+
+      <div class="music-controls">
+        <audio id="mySong">
+          <source src="ed_sheeran_perfect.mp3" type="audio/mp3">
+          Your browser does not support the audio element.
+        </audio>
+        <div>
+          <button id="playBtn" class="music-btn">🎶 Play Our Song</button>
+          <button id="pauseBtn" class="music-btn stop">⏸ Stop Music</button>
+        </div>
+        <div id="nowLabel" style="display:none; align-self:center; color:#b83a54; font-style:italic; margin-left:8px">Now playing ❤️</div>
+      </div>
+
+      <div style="margin-top:12px;">
+        <button id="openSurprise" style="background:linear-gradient(90deg,var(--accent),#ff8aa2); color:white; border:0; padding:12px 18px; border-radius:14px; cursor:pointer; font-weight:800">Open Birthday Surprise</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="card">
+    <h3 style="margin-top:0">Our Photo Moments</h3>
+    <div class="gallery" id="gallery">
+      <img src="IMG_1810.JPG" alt="Photo 1">
+      <img src="IMG_6216.JPG" alt="Photo 2">
+      <img src="IMG_6635.jpg" alt="Photo 3">
+    </div>
+    <div style="text-align:center; margin-top:10px;">
+      <div style="font-size:48px">🎂</div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz" class="page" style="display:none">
+  <div class="card">
+    <h2>🎲 Quiz — How well do you know Muskan?</h2>
+    <div class="quiz-card" id="quizCard">
+      <div id="quizQuestion" style="font-weight:700"></div>
+      <div id="quizChoices"></div>
+      <div style="margin-top:10px">
+        <button id="nextQuizBtn" style="background:linear-gradient(90deg,var(--accent),#ff8aa2); color:white; border:0; padding:10px 14px; border-radius:12px; cursor:pointer; font-weight:700">Next</button>
+      </div>
+      <div id="quizResult" style="margin-top:12px; font-weight:800"></div>
+    </div>
+  </div>
+</section>
+
+<!-- DIARY -->
+<section id="diary" class="page" style="display:none">
+  <div class="card">
+    <h2>📖 Our Diary</h2>
+    <video controls src="Videodiaryanimated.mp4"></video>
+    <img src="Bookanimatedimage.jpg" alt="Diary image" style="width:90%; max-width:500px; display:block; margin:12px auto; border-radius:12px;">
+  </div>
+</section>
+
+<!-- CROSSWORD -->
+<section id="crossword" class="page" style="display:none">
+  <div class="card" style="text-align:center; padding-bottom:30px;">
+    <h2>🧩 Our Crossword Challenge</h2>
+    <p style="font-size:1rem; color:#7a2a3a;">Scan the QR code below to play the crossword puzzle on your phone ❤️</p>
+    <img src="crossword animated2.jpg" style="width:80%; max-width:400px; border-radius:12px; margin:15px auto; display:block; box-shadow:0 6px 20px rgba(0,0,0,0.08);" alt="Crossword QR">
+    <p style="font-weight:600; color:#b83a54;">Scan this image to start the game!</p>
+    <img src="crossword puzzle image 1.jpg" style="width:90%; max-width:600px; border-radius:12px; margin:20px auto; display:block; box-shadow:0 6px 20px rgba(0,0,0,0.08);" alt="Crossword Puzzle">
+    <p style="margin-top:10px; color:#7a2a3a;">Try completing it… I know you’ll get everything right 😉💞</p>
+  </div>
+</section>
+
+<!-- LETTER -->
+<section id="letter" class="page" style="display:none">
+  <div class="card">
+    <h2>💌 A Letter for Ali</h2>
+    <p id="letterText" style="font-size:1.05rem; line-height:1.6;">
+      My dearest Ali,<br>
+      Happy birthday — you are my light, my laughter, and my home. You're special and when I say special 1 mean very very special to me. Because I have always noticed that I'm not so comfortable with anyone but when it comes to talking with you,sharing with you I always feel like I can I dont have limits, you listen to me,you dont judge me! don't fear about what you'll think about me. It took me a while to understand that you're not like others you're special more than I could ever explain you care you understand you love me the way am, I know I cant find someone with such a heart who always knows how to make me happywho can go all the way and stay awake just to listen to my nonsense talks who always realizes my pain benind my voice and is like "Are you OK?I dont think you're tell me what happened".I can never be thankful enough for entering my life and making me feel so special you always made me teel loved you always said
+     "I'll be there for you"& you're there for me always, thanks for shouting at me when I was wrong thanks for fighting for me, thanks for making me realize that l am special for you, important for you & never leaving me when I was worse. dont need anyone else but I just need one person in my life & that's you.Just stay with me always because you're very very special to me & i love you so much.I love you beyond words.<br><br>
+      — Muskan 💕
+    </p>
+    <div style="margin-top:12px">
+      <label style="font-weight:700; display:block; margin-bottom:6px">Edit this letter (optional)</label>
+      <textarea id="letterEdit" rows="6" style="width:100%; padding:10px; border-radius:8px">My dearest Ali,
+Happy birthday — you are my light, my laughter, and my home. I love you beyond words.
+
+— Muskan 💕</textarea>
+      <div style="margin-top:8px">
+        <button id="saveLetterBtn" class="music-btn">Save Letter</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEOS -->
+<section id="videos" class="page" style="display:none">
+  <div class="card">
+    <h2>🎥 Video Memories</h2>
+
+    <div class="video-block">
+      <h3>Memory 1</h3>
+      <video controls src="VID-20230215-WA0029.MP4"></video>
+      <div class="comments" id="v1Comments">
+        <div class="comment">Our first date. You made me feel so special on the cloud 9. The best memory of us</div>
+      </div>
+      <div style="margin-top:8px"><button class="music-btn" onclick="editComment(1)">Edit / Save</button></div>
+    </div>
+
+    <div class="video-block">
+      <h3>Memory 2</h3>
+      <video controls src="41B0EFED-536B-4AEE-90CE-3709DEF1DA05.mp4"></video>
+      <div class="comments" id="v2Comments">
+        <div class="comment">This video I felt you looked really cool hehehe throwing those stones in water my cool hero. Love you</div>
+      </div>
+      <div style="margin-top:8px"><button class="music-btn" onclick="editComment(2)">Edit / Save</button></div>
+    </div>
+
+    <div class="video-block">
+      <h3>Memory 3</h3>
+      <video controls src="92EA5F0A-F423-48D8-B8F7-FB088F42A5CC.mp4"></video>
+      <div class="comments" id="v3Comments">
+        <div class="comment">Me constantly admiring my boyfriend the love of my life most handsome men.</div>
+      </div>
+      <div style="margin-top:8px"><button class="music-btn" onclick="editComment(3)">Edit / Save</button></div>
+    </div>
+
+    <div class="video-block">
+      <h3>Memory 4</h3>
+      <video controls src="616E5E8F-93DC-4775-834D-EFCDA07E3BEB.mp4"></video>
+      <div class="comments" id="v4Comments">
+        <div class="comment">Our first meet after being boyfriend girlfriend we were so shy. But so in love hehe 💞</div>
+      </div>
+      <div style="margin-top:8px"><button class="music-btn" onclick="editComment(4)">Edit / Save</button></div>
+    </div>
+
+    <div class="video-block">
+      <h3>Memory 5</h3>
+      <video controls src="618FC154-D703-4A20-BC03-23ACE73BF86A.mp4"></video>
+      <div class="comments" id="v5Comments">
+        <div class="comment">This is us vibing the best morning I ever had by waking up with a beautiful view and a beauty queen boyfriend.</div>
+      </div>
+      <div style="margin-top:8px"><button class="music-btn" onclick="editComment(5)">Edit / Save</button></div>
+    </div>
+
+    <div class="video-block">
+      <h3>Memory 6</h3>
+      <video controls src="B285B6D3-9583-47B9-9967-716EA659C0F7.mp4"></video>
+      <div class="comments" id="v6Comments">
+        <div class="comment">The best chef anyone could ask for perfect vibe in our Airbnb miss this so much want to spend whole life with u like this and vibing in kitchen together! Love you babeOur sweetest moment. Love you endlessly 🥰</div>
+      </div>
+      <div style="margin-top:8px"><button class="music-btn" onclick="editComment(6)">Edit / Save</button></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SPOTIFY -->
+<section id="spotify" class="page" style="display:none">
+  <div class="card spotify-card">
+    <h2>🎵 Your Birthday Playlist — Unlock with Password</h2>
+    <img src="spotifyimage1.jpg" alt="Spotify cover" id="spotifyCover">
+    <div class="spotify-pass">
+      <input type="password" id="spotifyPass" placeholder="Enter password to unlock">
+      <button id="unlockSpotify" class="music-btn">Unlock</button>
+    </div>
+    <div id="spotifyContent" style="display:none; margin-top:12px; text-align:center;">
+      <img src="spotifyimage2.jpg" alt="Spotify unlocked cover" style="width:90%; max-width:480px; border-radius:12px">
+    </div>
+  </div>
+</section>
+
+<!-- Surprise Modal -->
+<div class="modal-root" id="surpriseModal" style="display:none">
+  <div class="modal-back"></div>
+  <div class="modal-card">
+    <h2>🎉 HAPPY BIRTHDAY, ALI! 🎉</h2>
+    <p>Hello Baby,I cant describe in words how important you are to me and how much I love you.One day when i will be rich i will still make u a website just a bigger one lol! with all my love, all my heart — today is your day. Open the pages, watch memories, and enjoy our song.</p>
+    <div style="margin-top:14px">
+      <button id="closeModalBtn" style="background:linear-gradient(90deg,var(--accent),#ff8aa2); color:white; border:0; padding:12px 18px; border-radius:14px; cursor:pointer; font-weight:800">Open My Surprise</button>
+    </div>
+  </div>
+</div>
+
+<footer>Made with ❤️ by Muskan</footer>
+
+<script>
+/* Overlay open */
+document.getElementById('openSiteBtn').addEventListener('click',()=>{
+  document.getElementById('openingOverlay').style.display='none';
+});
+document.getElementById('skipOverlay').addEventListener('click',()=>{
+  document.getElementById('openingOverlay').style.display='none';
+});
+/* -------------------------
+   Surprise Modal behavior
+   ------------------------- */
+const surpriseModal = document.getElementById('surpriseModal');
+const closeModalBtn = document.getElementById('closeModalBtn');
+const openSurpriseBtn = document.getElementById('openSurprise');
+
+function openModal(){ surpriseModal.style.display='flex'; }
+function closeModal(){ surpriseModal.style.display='none'; }
+
+if(!localStorage.getItem('seenSurprise')){
+  openModal();
+  localStorage.setItem('seenSurprise','yes');
+}
+closeModalBtn.addEventListener('click', ()=> closeModal());
+openSurpriseBtn.addEventListener('click', ()=> openModal());
+/* Music controls */
+const song=document.getElementById('mySong');
+document.getElementById('playBtn').addEventListener('click',()=>{
+  song.play(); document.getElementById('nowLabel').style.display='inline';
+});
+document.getElementById('pauseBtn').addEventListener('click',()=>song.pause());
+
+/* Navigation */
+const pages=document.querySelectorAll('.page');
+const navBtns=document.querySelectorAll('.navlinks button');
+navBtns.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    pages.forEach(p=>p.style.display='none');
+    document.getElementById(btn.dataset.page).style.display='block';
+    navBtns.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+/* Spotify password */
+document.getElementById('unlockSpotify').addEventListener('click',()=>{
+  const val=document.getElementById('spotifyPass').value.trim();
+  if(val==='iloveyou'){
+    document.getElementById('spotifyContent').style.display='block';
+  } else{
+    alert('Wrong password! Try again ❤️');
+  }
+});
+
+/* Quiz data */
+const quizData=[
+  {q:"Where did we go on our first date?", choices:["Cafe near campus","Movie theater","Beach picnic","Paint date"], a:3},
+  {q:"Which sneaker brand does Ali love most?", choices:["Nike","Adidas","Jordan","Puma"], a:2},
+  {q:"Which snack does Ali steal the most?", choices:["Fries","Cookies","Chips","Cake"], a:0},
+  {q:"What is our favorite movie together?", choices:["Inception","Titanic","Interstellar","Our private movie"], a:3},
+  {q:"Where should we travel next?", choices:["Paris","Bali","New Zealand","Maldives"], a:1}
+];
+let qIndex=0;
+const quizQ=document.getElementById('quizQuestion');
+const quizC=document.getElementById('quizChoices');
+const quizRes=document.getElementById('quizResult');
+function loadQuiz(){
+  if(qIndex>=quizData.length){ quizQ.innerHTML='🎉 You finished the quiz!'; quizC.innerHTML=''; return; }
+  quizQ.innerHTML=quizData[qIndex].q;
+  quizC.innerHTML='';
+  quizData[qIndex].choices.forEach((ch,i)=>{
+    const b=document.createElement('div'); b.className='choice'; b.innerText=ch;
+    b.onclick=()=>{ 
+      if(i===quizData[qIndex].a){ b.classList.add('correct'); quizRes.innerText='Correct! 🎉'; }
+      else{ b.classList.add('wrong'); quizRes.innerText='Oops, try next one ❤️'; }
+    }
+    quizC.appendChild(b);
+  });
+}
+loadQuiz();
+document.getElementById('nextQuizBtn').addEventListener('click',()=>{
+  qIndex++; quizRes.innerText=''; loadQuiz();
+});
+
+/* Comment edit save */
+function editComment(n){
+  const div=document.getElementById('v'+n+'Comments');
+  let txt=prompt("Edit your comment:", div.innerText);
+  if(txt){ div.innerHTML='<div class="comment">'+txt+'</div>'; }
+}
+</script>
+</body>
+</html>
